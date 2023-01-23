@@ -22,6 +22,12 @@ management.metrics.tags.application: ${spring.application.name}
 management.metrics.distribution.percentiles-histogram.http.server.requests: true
 management.metrics.distribution.percentiles-histogram.resilience4j.circuitbreaker.calls: true
 
+logging.level.root: INFO
+logging.level.io.github.robwin: DEBUG
+logging.level.io.github.resilience4j: DEBUG
+logging.level.org.springframework.http: DEBUG
+logging.level.org.springframework.web: DEBUG
+
 #resilience4j.circuitbreaker.metrics.use_legacy_binder: true
 
 resilience4j.circuitbreaker:
