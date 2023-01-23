@@ -1,12 +1,15 @@
 package io.github.robwin;
 
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RetryTest extends AbstractRetryTest {
+	private static final Logger LOG = LoggerFactory.getLogger(RetryTest.class);
 
 	@Test
 	public void backendAshouldRetryThreeTimes() {
@@ -43,6 +46,7 @@ public class RetryTest extends AbstractRetryTest {
 	}
 
 	private void produceFailure(String backend) {
+		LOG.info("produceFailure: backend: {}", backend);
 		ResponseEntity<String> response = restTemplate.getForEntity("/" + backend + "/failure", String.class);
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
 	}

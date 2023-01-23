@@ -1,6 +1,8 @@
 package io.github.robwin.controller;
 
 import io.github.robwin.service.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,7 @@ import java.util.concurrent.CompletableFuture;
 @RestController
 @RequestMapping(value = "/backendA")
 public class BackendAController {
+    private static final Logger LOG = LoggerFactory.getLogger(BackendAController.class);
 
     private final Service businessAService;
 
@@ -22,6 +25,7 @@ public class BackendAController {
 
     @GetMapping("failure")
     public String failure(){
+        LOG.info("failure: ");
         return businessAService.failure();
     }
 

@@ -16,6 +16,8 @@ import io.github.resilience4j.retry.RetryRegistry;
 import io.github.resilience4j.timelimiter.TimeLimiter;
 import io.github.resilience4j.timelimiter.TimeLimiterRegistry;
 import io.github.robwin.service.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +37,7 @@ import static java.util.Arrays.asList;
 @RestController
 @RequestMapping(value = "/backendB")
 public class BackendBController {
+    private static final Logger LOG = LoggerFactory.getLogger(BackendBController.class);
 
     private static final String BACKEND_B = "backendB";
     private final Service businessBService;
@@ -66,6 +69,7 @@ public class BackendBController {
 
     @GetMapping("failure")
     public String failure(){
+        LOG.info("failure: ");
         return execute(businessBService::failure);
     }
 
