@@ -1,4 +1,5 @@
-FROM gradle:6.9.0-jdk8-alpine
+# docker pull gradle:7.5.1-jdk11-alpine
+FROM gradle:7.5.1-jdk11-alpine
 ADD --chown=gradle . /code
 WORKDIR /code
 RUN gradle clean build -x test
